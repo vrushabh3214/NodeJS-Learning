@@ -90,12 +90,36 @@
             <tr>
                 <td>Hobbies</td>
                 <td>
-                    <input type="checkbox" name="hobbies" value="Writing" <% if (Array.isArray(updateData.hobbies) && updateData.hobbies.includes("Writing") ) { %>
+                    <input type="checkbox" name="hobbies" value="Writing" <% if ( updateData.hobbies.includes("Writing") ) { %>
                         <%= "checked" %><% } %>>Writing
-                    <input type="checkbox" name="hobbies" value="Photography" <% if (Array.isArray(updateData.hobbies) && updateData.hobbies.includes("Photography")) { %>
+                    <input type="checkbox" name="hobbies" value="Photography" <% if ( updateData.hobbies.includes("Photography")) { %>
                         <%= "checked" %><% } %>>Photography
-                    <input type="checkbox" name="hobbies" value="Learning" <% if (Array.isArray(updateData.hobbies) && updateData.hobbies.includes("Learning")) { %>
+                    <input type="checkbox" name="hobbies" value="Learning" <% if ( updateData.hobbies.includes("Learning")) { %>
                         <%= "checked" %><% } %>>Learning
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Additional Information:
+                </td>
+                <td>
+                    <textarea  type="text" name="additionalInfo"><%= updateData.additionalInfo %></textarea>  
+                </td>
+            </tr>
+            <tr>
+                <% var cityName=["surat","rajkot","vadodra"] %>
+                <td>
+                    City
+                </td>
+                <td>
+                    <select name="city" >
+                        <option value="">-- select City --</option>
+                        <% cityName.map((v,i)=>{ %>
+                            <option value="<%= v %>" <% if (updateData.city==v) { %>
+                             <%= "selected" %>
+                            <% } %>><%= v %></option>
+                        <% }) %>
+                    </select>
                 </td>
             </tr>
             <tr>

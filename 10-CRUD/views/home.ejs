@@ -105,11 +105,33 @@
                 </td>
             </tr>
             <tr>
-                <td>Gander</td>
+                <td>Hobbies</td>
                 <td>
                     <input type="checkbox" name="hobbies" value="Writing">Writing
                     <input type="checkbox" name="hobbies" value="Photography">Photography
                     <input type="checkbox" name="hobbies" value="Learning">Learning
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Additional Information:
+                </td>
+                <td>
+                    <textarea  type="text" name="additionalInfo"></textarea>  
+                </td>
+            </tr>
+            <tr>
+                <% var cityName=["surat","rajkot","vadodra"] %>
+                <td>
+                    City
+                </td>
+                <td>
+                    <select name="City" >
+                        <option value="">-- select City --</option>
+                        <% cityName.map((v,i)=>{ %>
+                            <option value="<%= v %>"><%= v %></option>
+                        <% }) %>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -129,7 +151,9 @@
                 <th>Email</th>
                 <th>Gander</th>
                 <th>Hobbies</th>
-                <th>Actions</th>
+                <th>additionalInfo</th>
+                <th>City</th>
+                <th>Actions</th>    
             </tr>
             <% student.map((item, i)=> { %>
                 <tr>
@@ -144,6 +168,12 @@
                     </td>
                     <td>
                         <%= item.hobbies %>
+                    </td>
+                    <td>
+                        <%= item.additionalInfo %>
+                    </td>
+                    <td>
+                        <%= item.city %>
                     </td>
                     <td>
                         <a href="/deleteData/?id=<%= i %>">Delete</a> ||
