@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="/">Home</a> || <a href="/about">About</a> ||<a href="/cont">context</a> || <a href="/404">404</a>
+    <h1>Home
+        <%= data %>
+    </h1>
+    <% if (false) { %>
+        <h2>Is True</h2>
+    <% } else { %>
+            <h2>Is false</h2>
+    <% } %>
+    <% for (let i=0; i < 10; i++) { %>
+        <span>
+            <%= i %>
+        </span>
+    <% } %>
+</body>
+
+</html>

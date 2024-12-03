@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Data</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            width: 30%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Update Student Data</h1>
+
+    <!-- Form for updating student data -->
+    <form method="post" action="/upDate">
+        <input type="hidden" name="id" value="<%= id %>">
+        <table>
+            <tr>
+                <td><label for="name">Name</label></td>
+                <td><input type="text" id="name" name="name" value="<%= updateData.name %>" required></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email</label></td>
+                <td><input type="email" id="email" name="email" value="<%= updateData.email %>" required></td>
+            </tr>
+            <tr>    
+                <td>Gander</td>
+                <td>
+                    <input type="radio" name="gander" value="Male" <% if (updateData.gander=="Male" ) { %>
+                        <%= "checked" %><% } %>>Male
+                    <input type="radio" name="gander" value="Female" <% if (updateData.gander=="Female" ) { %>
+                        <%= "checked" %><% } %>>Female
+                    <input type="radio" name="gander" value="Other" <% if (updateData.gander=="Other" ) { %>
+                        <%= "checked" %><% } %>>Other
+                </td>
+            </tr>
+            
+            <tr>
+                <td></td>
+                <td><input type="submit" name="submit" value="Update"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>
