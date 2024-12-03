@@ -23,7 +23,7 @@
 
         table,
         .viewTable {
-            width: 30%;
+            /* width: 30%; */
             margin: 20px auto;
             background-color: #ffffff;
             border-collapse: collapse;
@@ -31,7 +31,7 @@
         }
 
         .viewTable {
-            width: 60%;
+            width: 75%;
         }
 
         th,
@@ -123,9 +123,7 @@
             <tr>
                 <% var cityName=["surat","rajkot","vadodra"] %>
                 <td>
-                    City
-                </td>
-                <td>
+                    <td>City</td>
                     <select name="City" >
                         <option value="">-- select City --</option>
                         <% cityName.map((v,i)=>{ %>
