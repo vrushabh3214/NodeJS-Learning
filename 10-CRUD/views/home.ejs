@@ -5,79 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Data</title>
+    <link rel="stylesheet" href="/css/style.css">
 
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-
-        h1 {
-            margin-bottom: 20px;
-        }
-
-        form {
-            margin-bottom: 30px;
-        }
-
-        table,
-        .viewTable {
-            /* width: 30%; */
-            margin: 20px auto;
-            background-color: #ffffff;
-            border-collapse: collapse;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .viewTable {
-            width: 75%;
-        }
-
-        th,
-        td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #dee2e6;
-        }
-
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-
-        td a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        td a:hover {
-            text-decoration: underline;
-        }
-
-        input[type="text"],
-        input[type="email"] {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-        }
-
-        input[type="submit"] {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-    </style>
 </head>
 
 <body>
@@ -122,15 +51,17 @@
             </tr>
             <tr>
                 <% var cityName=["surat","rajkot","vadodra"] %>
-                <td>
+                
                     <td>City</td>
-                    <select name="City" >
-                        <option value="">-- select City --</option>
-                        <% cityName.map((v,i)=>{ %>
-                            <option value="<%= v %>"><%= v %></option>
-                        <% }) %>
+                    <td>
+                        <select name="City" >
+                            <option value="">-- select City --</option>
+                            <% cityName.map((v,i)=>{ %>
+                                <option value="<%= v %>"><%= v %></option>
+                            <% }) %>
+                    </td>
                     </select>
-                </td>
+                
             </tr>
             <tr>
                 <td></td>
