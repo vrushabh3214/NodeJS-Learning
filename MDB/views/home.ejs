@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Data</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+    <center>
+        <h1>Student Data</h1>
+    </center>
+
+    <!-- Form for adding new student -->
+    <form method="post" action="/sendDeta">
+        <table border="0" align="center" cellpadding="10">
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" required></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email" required></td>
+            </tr><tr>
+                <td>password</td>
+                <td><input type="password" name="password" required></td>
+            </tr>
+            <tr>
+                <td>Gander</td>
+                <td>
+                    <input type="radio" name="gander" value="Male" required>Male
+                    <input type="radio" name="gander" value="Female" required>Female
+                    <input type="radio" name="gander" value="Other" required>other
+                </td>
+            </tr>
+            <tr>
+                <td>Hobbies</td>
+                <td>
+                    <input type="checkbox" name="hobbies" value="Writing">Writing
+                    <input type="checkbox" name="hobbies" value="Photography">Photography
+                    <input type="checkbox" name="hobbies" value="Learning">Learning
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Additional Information:
+                </td>
+                <td>
+                    <textarea  type="text" name="about"></textarea>  
+                </td>
+            </tr>
+            <tr>
+                <% var cityName=["surat","rajkot","vadodra"] %>
+                
+                    <td>City</td>
+                    <td>
+                        <select name="City" >
+                            <option value="">-- select City --</option>
+                            <% cityName.map((v,i)=>{ %>
+                                <option value="<%= v %>"><%= v %></option>
+                            <% }) %>
+                    </td>
+                    </select>
+                
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" name="submit">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+
+</html>

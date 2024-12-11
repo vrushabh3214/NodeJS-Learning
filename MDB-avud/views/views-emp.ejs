@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Data</title>
+</head>
+<body>
+    <center>
+        <h1>Employee Data</h1>
+        <a href="/">Add Employee Data</a>
+    </center>
+    <table border="1" align="center" cellpadding="10">
+        <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>password</td>
+            <td>Gander</td>
+            <td>Hobbies</td>
+            <td>Additional Information:</td>
+            <td>City</td>
+        </tr>
+        <tr>
+            <% empData.map((v,i)=>{ %>
+            <tr>
+                <td><%= v.name %></td>
+                <td><%= v.email %></td>
+                <td><%= v.password %></td>
+                <td><%= v.gander %></td>
+                <td><%= v.hobbies %></td>
+                <td><%= v.about %></td>
+                <td><%= v.City %></td>
+                <td><a href="/deleteEmp/?id=<%= v.id %>">Delete</a>||<a href="/editEmp/<%= v.id %>">Update</a> </td>
+            </tr>
+            <% }) %>
+        </tr>
+    </table>
+</body>
+</html>
