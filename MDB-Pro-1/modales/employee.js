@@ -1,9 +1,8 @@
 /* eslint-disable no-undef */
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const multer = require('multer');
-const path = require('path');
-const imagePath = "/uploads";    
+
+// const db = mongoose.connect("mongodb://127.0.0.1:27017/InoteBook");
 
 const employeeSchema = new Schema({
     name: {
@@ -34,25 +33,8 @@ const employeeSchema = new Schema({
     City: {
         type: String,
         required: true
-    },
-    image: {
-        type: String,
-        required: true
     }
 });
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.join(__dirname, '..', imagePath))
-    },
-    filename:  (req, file, cb)=> {
-      const uniqueSuffix = Date.now()
-      cb(null, file.fieldname + '-' + uniqueSuffix)
-    }
-  })
-
-  employeeSchema.statics.uploadedAvatar = multer({ storage: storage }).single('image');
-  employeeSchema.statics.imgPath = imagePath
-
 const Employee = mongoose.model('Employee', employeeSchema);
-module.exports  =  Employee ;
+module.exports  =  Employee 
