@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Data</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <center>
+    <header class="d-flex">
         <h1>Employee Data</h1>
-        <a href="/">Add Employee Data</a>
-    </center>
+        <a href="/" class="btn">+</a>
+    </header>
     <table border="1" align="center" cellpadding="10">
         <tr>
             <td>Name</td>
@@ -19,7 +20,6 @@
             <td>Hobbies</td>
             <td>Additional Information:</td>
             <td>City</td>
-            <td>image</td>
             <td>Action</td>
         </tr>
         <tr>
@@ -32,8 +32,7 @@
                 <td><%= v.hobbies %></td>
                 <td><%= v.about %></td>
                 <td><%= v.City %></td>
-                <td><img src="<%= v.image %>" width="100" height="100"></td>
-                <td><a href="/deleteEmp/?id=<%= v.id %>">Delete</a>||<a href="/editEmp/<%= v.id %>">Update</a> </td>
+                <td><a class="delete" href="/deleteEmp/?id=<%= v.id %>">&#128465;</a>&nbsp<a class="edit" href="/editEmp/<%= v.id %>">&#128394;</a> </td>
             </tr>
             <% }) %>
         </tr>

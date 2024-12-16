@@ -10,13 +10,13 @@
 </head>
 
 <body>
-    <center>
+    <header class="d-flex">
         <h1>Add Employee Data</h1>
-        <a href="/viewsEmp">Employee Data</a>
-    </center>
+        <a href="/viewsEmp" class="btn">&#128463;</a>
+    </header>
 
     <!-- Form for adding new student -->
-    <form method="post" action="/sendDeta" enctype="multipart/form-data">
+    <form method="post" action="/sendDeta">
         <table border="0" align="center" cellpadding="10">
             <tr>
                 <td>Name</td>
@@ -51,12 +51,6 @@
                 </td>
                 <td>
                     <textarea  type="text" name="about"></textarea>  
-                </td>
-            </tr>
-            <tr>
-                <td>Upload Image</td>
-                <td>
-                    <input type="file" name="image" />
                 </td>
             </tr>
             <tr>
