@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const port = 3000;
 const db = require('./config/db');
-const router = require('./routers/employeeRouter');
+const router = require('./routers/univariateRouter');
 
 const app = express();
 
