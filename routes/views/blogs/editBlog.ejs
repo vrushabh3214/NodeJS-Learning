@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="1" cellpadding="10px" cellspacing="0">
+        <form action="/blogs/upDate" method="post" enctype="multipart/form-data">
+            <input type="text" name="id" value="<%= updateData.id %>">
+            <tr>
+                <td>Title</td>
+                <td><input type="text" value="<%=updateData.title%>" name="title"></td>
+            </tr>
+            <tr>
+                <td>dicription</td>
+                <td><textarea name="description"><%= updateData.description %></textarea>
+            </tr>
+            <tr>
+                <% var category=['General',"Sports","Entertainment","Technology","Health"] %>
+                    <td>category</td>
+
+                    <td><select name="category">
+                            <option value="">-- Select Category --</option>
+                            <% for(var i=0;i<category.length;i++){%>
+                                <option <% if(updateData.category==category[i]) { %> selected <% } %> value="
+                                        <%=category[i]%>">
+                                            <%=category[i]%>
+                                </option>
+                                <%}%>
+                        </select></td>
+            </tr>
+            <tr>
+                <td>image</td>
+                <td><input type="file" name="image">
+                    <img src="<%=updateData.image%>" alt="" height="100px">
+                </td>
+            </tr>
+            <tr>
+                <td>author</td>
+                <td><input type="text" name="author" value="<%=updateData.author%>"></td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td><input type="date" name="date" value="<%=updateData.date%>"></td>
+            </tr>
+            <tr >
+                <td colspan="2"><input type="submit" value="Update"></td>
+            </tr>
+        </form>
+    </table>
+</body>
+
+</html>

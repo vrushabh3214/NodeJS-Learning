@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('../nev') %>
+        <div class="container">
+
+            <h1>Blogs</h1>
+
+            <div class="d-flex">
+
+                <form>
+                    <input type="text" name="search" placeholder="Search" value="<%=searchData%>">
+                    <input type="submit" value="Search">
+
+                </form>
+                <a href="/blogs" class="ms-3"><button>Reset</button></a>
+            </div>
+
+            <table border="2" cellpadding="10px" cellspacing="0" class="mt-5">
+                <tr>
+                    <td>Title</td>
+                    <td>Description</td>
+                    <td>Author</td>
+                    <td>Date</td>
+                    <td>Category</td>
+                    <td>Image</td>
+                    <td>Actions</td>
+                </tr>
+                <% for(var i=0;i<blogData.length;i++){%>
+                    <tr>
+                        <td>
+                            <%=blogData[i].title%>
+                        </td>
+                        <td>
+                            <%=blogData[i].description%>
+                        </td>
+                        <td>
+                            <%=blogData[i].author%>
+                        </td>
+                        <td>
+                            <%=blogData[i].date%>
+                        </td>
+                        <td>
+                            <%=blogData[i].categoryId.categoryName%>
+                        </td>
+                        <td><img src="<%=blogData[i].image%>" alt="" height="100px"></td>
+                        <td><a href="/blogs/editBlog/<%=blogData[i]._id%>">Edit</a> || <a
+                                href="/blogs/deleteBlog/<%=blogData[i]._id%>">Delete</a></td>
+                    </tr>
+                    <%}%>
+
+                        <tr>
+                            <td colspan="7">
+                                <%=blogData.length==0?"No Data Found":""%>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="7">
+                                <% for(var i=0;i< totalPage;i++){%>
+                                    <a href="?page=<%=i%>&search=<%= searchData %>"><button><%=i+1%></button></a>
+                                <%}%>
+                            </td>
+                        </tr>
+
+                        <tr colspan="7">
+                            <td>
+                                <% if(page>0){%>
+                                    <a href="?page=<%=parseInt(page)-1%>&search=<%= searchData %>"><button>Previous</button></a>
+                                <%}%>
+                           
+                                <% for(var i=0;i< totalPage;i++){%>
+                                    <a href="?page=<%=i%>&search=<%= searchData %>"><button><%=i+1%></button></a>
+                                <%}%>
+                           
+                                <% if(page< totalPage-1){%>
+                                    <a href="?page=<%=Number(page)+1%>&search=<%= searchData %>"><button>Next</button></a>
+                                <%}%>
+                            </td>
+                        </tr>
+            </table>
+
+
+        </div>
+</body>
+
+</html>

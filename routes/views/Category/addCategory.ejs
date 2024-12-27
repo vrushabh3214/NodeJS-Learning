@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <%- include('../nev') %>
+
+    <h1>Add Blog</h1>
+
+    <table>
+        <form action="/category/addCategory" method="post">
+            <tr>
+                <td>Enter Category Name</td>
+                <td><input type="text" name="categoryName"></td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td><input type="date" name="categoryDate"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Add Category"></td>
+            </tr>
+        </form>
+    </table>
+</body>
+
+</html>

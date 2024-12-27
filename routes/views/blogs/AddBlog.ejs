@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <%- include('../nev') %>
+
+    <h1>Add Blog</h1>
+
+    <table>
+        <form action="/blogs/addNewBlog" method="post" enctype="multipart/form-data">
+            <tr>
+                <td>Title</td>
+                <td><input type="text" name="title"></td>
+            </tr>
+            <tr>
+                <td>dicription</td>
+                <td><textarea name="description"></textarea>
+            </tr>
+            <tr>
+               
+                    <td>category</td>
+
+                    <td><select name="categoryId">
+                        <option value="">-- Select Category --</option>
+                            <% categoryData.map(value =>{%>
+                                <option value="<%=value.id%>">
+                                    <%= console.log(value);
+                                     %>
+                                    <%=value.categoryName%>
+                                </option>
+                                <%})%>
+                        </select></td>
+            </tr>
+            <tr>
+                <td>image</td>
+                <td><input type="file" name="image"></td>
+            </tr>
+            <tr>
+                <td>author</td>
+                <td><input type="text" name="author"></td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td><input type="date" name="date"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="submit"></td>
+            </tr>
+        </form>
+    </table>
+</body>
+
+</html>
