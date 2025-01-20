@@ -1,0 +1,232 @@
+
+const AdminModel = require('../model/AdminModel');
+const fs = require('fs');
+const path = require('path');
+
+module.exports.addmin = async (req, res) => {
+    try {
+        if (req.cookies.admincookie) {
+            return res.render('dashboard',{
+                admincookie : req.cookies.admincookie
+            });
+        }
+        else{
+            res.redirect('back');
+        }
+    } catch (err) {
+        console.log(err);
+        return res.redirect('back');
+    }
+}
+
+module.exports.Tables = async (req, res) => {
+    try {
+        let viewAdmin = await AdminModel.find();
+        console.log(viewAdmin);     
+        return res.render('viewAdmin', { 
+            viewAdmin , 
+            admincookie : req.cookies.admincookie
+        });
+    } catch (err) {
+        console.log(err);
+        return res.redirect('back');
+    }
+}
+
+module.exports.Addforms = async (req, res) => {
+    try {
+        return res.render('Addform',{
+            admincookie : req.cookies.admincookie
+        });
+    } catch (err) {
+        console.log(err);
+        return res.redirect('back');
+    }
+}
+
+module.exports.insetData = async (req, res) => {
+    console.log(req.file);
+    console.log(req.body);
+    
+    try {
+        let imagenewpath = '';
+        if (req.file) {
+            imagenewpath = AdminModel.imagepath + "/" + req.file.filename;
+            console.log("imagenewpath == "+imagenewpath);
+            
+        }
+        req.body.image = imagenewpath;
+        req.body.name = req.body.fname +" "+ req.body.lname;
+        await AdminModel.create(req.body);
+        return res.redirect('/viewAdmin',{
+            admincookie : req.cookies.admincookie
+        });
+    } catch (error) {
+        console.error("Error insertBlogs blog:", error);
+        res.redirect('/viewAdmin');
+    }
+}
+module.exports.deleteAdmin = async (req, res) => {
+    try {
+        console.log('ID received for deletion:', req.params.id);
+
+        const singaleDataDelete = await AdminModel.findById(req.params.id);
+        
+       
+        const deletePath = path.join(__dirname, "..", singaleDataDelete.image);
+        console.log('File path for deletion:', deletePath);
+
+        if (deletePath) {
+            try {
+                fs.unlinkSync(deletePath);
+                console.log('File deleted successfully');
+            } catch (err) {
+                console.error('Error deleting file:', err);
+            }
+        } else {
+            console.log('File does not exist. Skipping file deletion.');
+        }
+
+        const deletedRecord = await AdminModel.findByIdAndDelete(req.params.id);
+        console.log('Deleted record:', deletedRecord);
+
+        return res.redirect('back');
+    } catch (err) {
+        console.error('Error during deletion:', err);
+        return res.redirect('back');
+    }
+};
+
+
+module.exports.Sign_ing = async(req,res)=>{
+    try{
+        if(req.cookies.admincookie){
+            res.redirect('/dashboard');
+        }
+        else{
+
+            res.render('Sign_ing');
+        }
+    }
+    catch(err){
+        console.log(err);
+        return res.redirect('back')
+    }
+}
+module.exports.Sign_ingData = async(req,res)=>{
+    try{
+        let isAdmin = await AdminModel.find({email:req.body.email}).countDocuments();
+        if (isAdmin==1) {
+            let isAdminExist = await AdminModel.findOne({email:req.body.email})
+            if (isAdminExist.password == req.body.password) {
+
+                res.cookie('admincookie',isAdminExist);
+                // console.log(isAdminExist);
+                
+                if (req.cookies.admincookie) {
+                    res.redirect('/dashboard')
+                }
+                else{
+                    return res.redirect('/')
+                }
+            }
+            else{
+                console.log('invalid password');
+                return res.redirect('/')
+            }
+        }
+        else{
+            console.log('invalid Email');
+            return res.redirect('/')
+        }
+
+        
+    }
+    catch(err){
+        console.log(err);
+        return res.redirect('back')
+    }
+}
+
+
+/* logout  */
+
+module.exports.logout = async(req,res)=>{
+    try{
+        res.clearCookie('admincookie');
+        res.redirect('/')
+    }
+    catch(err){
+        console.log(err);
+        return res.redirect('back')
+    }
+}
+
+module.exports.MyProfile = async(req,res)=>{
+    try{
+        res.render('MyProfile',{
+            admincookie : req.cookies.admincookie
+        })
+    }
+    catch(err){
+        return res.redirect('back')
+    }
+}
+module.exports.ChangePassword = async(req,res) =>{
+    try{
+        res.render('ChangePassword',{
+            admincookie : req.cookies.admincookie
+        })
+    }
+    catch(err){
+        console.log(err);
+        return res.redirect('back')
+    }
+}
+
+module.exports.changeNewPassword = async(req,res)=>{
+    try{
+        let oldpassword = await req.cookies.admincookie
+        console.log(oldpassword.password);
+        console.log(req.body);
+        
+        
+        if (oldpassword.password == req.body.curentPassword) {
+            if (req.body.curentPassword != req.body.newPassword) {
+                if (req.body.newPassword == req.body.conformPassworsd) {
+                    let newData =await AdminModel.findByIdAndUpdate(oldpassword._id,{password:req.body.newPassword})
+                    console.log(newData);
+                    
+                    res.redirect('/logout')
+                }
+                else{
+                    console.log('New password and conform password not match');
+                res.redirect('back')
+                }
+            }
+            else{
+                console.log('curent password and new password match');
+                res.redirect('back')
+            }
+        }
+        else{
+            console.log('curent password is not curect');
+            res.redirect('back')
+        }
+    }
+    catch(err){
+        console.log(err);
+        return res.redirect('back')
+    }
+}
+
+
+
+
+
+
+
+
+
+
+// vvgp rrki rldc nvyr

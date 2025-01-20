@@ -1,0 +1,127 @@
+<%- include('../layouts/header') %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Blogs</title>
+
+</head>
+<style>
+    .link {
+    text-decoration: none;
+    color: white;
+    background-color: #007BFF;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px;
+    font-size: 16px;
+}
+
+.link:hover {
+    background-color: #0056b3;
+}
+
+.heading {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2rem;
+    color: #333;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+}
+
+.form-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.form-table td {
+    padding: 10px;
+}
+
+.label {
+    text-align: right;
+    font-weight: bold;
+    color: #555;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.input-field:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+</style>
+<body>
+   
+    <form action="/Blogs/insertBlogs" method="post" enctype="multipart/form-data" class="form-container">
+        <table class="form-table">
+            <tr>
+                <td class="label">Select Category</td>
+                <td>
+                    
+                    <select name="categoryid" class="input-field" required>
+                        <option value="">--Select--</option>
+                        <%= console.log(categoriesN); %>
+                        <% categoriesN.map(category => { %>
+                            <%= console.log(category); %>
+                            <option value="<%= category.id %>"><%= category.categoryName %></option>
+                        <% }); %>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Title</td>
+                <td><input type="text" name="title" class="input-field" required></td>
+            </tr>
+            <tr>
+                <td class="label">Description</td>
+                <td><textarea name="description" rows="4" class="input-field" required></textarea></td>
+            </tr>
+            <tr>
+                <td class="label">Author</td>
+                <td><input type="text" name="author" class="input-field" required></td>
+            </tr>
+            <tr>
+                <td class="label">Date</td>
+                <td><input type="date" name="blogDate" class="input-field" required></td>
+            </tr>
+            <tr>
+                <td class="label">Upload Image</td>
+                <td><input type="file" name="images" accept="image/*" class="input-field" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <input type="submit" value="Add Blog" class="button">
+                </td>
+            </tr>
+        </table>    
+        <div style=" align-items: center; justify-content: center; display: flex;">
+
+            <a href="/Blogs/viewblogs" class="link">View </a>
+            <a href="/" class="link">Add Category</a>
+        </div> 
+    </form>
+</body>
+</html>
+<%- include('../layouts/footer') %>

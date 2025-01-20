@@ -14,8 +14,8 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use("/uploads", express.static(path.join(__dirname, 'uploads')))
 
-app.use("/", router);
-app.use("/blogs", blogsRouter);
+// app.use("/", router);
+app.use("/", blogsRouter);
 app.use("/category", require("./routers/categoryRouter.js"))
 
 

@@ -1,0 +1,26 @@
+<%- include('../layouts/header') %>
+<div class="container my-4">
+    <h2 class="text-center text-primary mb-4">Edit Blog</h2>
+    <form action="/Blogs/editData/<%= blog._id %>" method="post">
+        <div class="mb-3">
+            <label for="blogCategory" class="form-label">Blog Category:</label>
+            <select name="blogCategoryid" id="blogCategory" class="form-select">
+                <% categories.forEach(category => { %>
+                    <option value="<%= category._id %>" <%= blog.categoryid._id.equals(category._id) ? 'selected' : '' %>>
+                        <%= category.categoryname %>
+                    </option>
+                <% }); %>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="blogTitle" class="form-label">Blog Title:</label>
+            <input type="text" name="blogTitle" id="blogTitle" class="form-control" value="<%= blog.title %>" />
+        </div>
+        <div class="mb-3">
+            <label for="blogDescription" class="form-label">Blog Description:</label>
+            <textarea name="blogDescription" id="blogDescription" rows="5" class="form-control"><%= blog.description %></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+<%- include('../layouts/footer') %>

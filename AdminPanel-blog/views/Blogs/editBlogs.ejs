@@ -1,0 +1,60 @@
+<%- include('../layouts/header') %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Blogs</title>
+
+</head>
+<body>
+    <div style=" align-items: center; justify-content: center; display: flex;">
+
+        <a href="/Blogs/viewblogs" class="link">View </a>
+    </div> 
+    <h1 class="heading">Add New Blog</h1>
+    <form action="/Blogs/insertBlogs" method="post" enctype="multipart/form-data" class="form-container">
+        <table class="form-table">
+            <tr>
+                <td class="label">Select Category</td>
+                <td>
+                    <% const categories = ['HR', 'CA', 'Manager', 'Doctor']; %>
+                    <select name="category" class="input-field" required>
+                        <option value="">--Select--</option>
+                        <% categories.forEach(category => { %>
+                            <option value="<%= category %>"><%= category %></option>
+                        <% }); %>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Title</td>
+                <td><input type="text" name="title" class="input-field" required></td>
+            </tr>
+            <tr>
+                <td class="label">Description</td>
+                <td><textarea name="description" rows="4" class="input-field" required></textarea></td>
+            </tr>
+            <tr>
+                <td class="label">Author</td>
+                <td><input type="text" name="author" class="input-field" required></td>
+            </tr>
+            <tr>
+                <td class="label">Date</td>
+                <td><input type="date" name="blogDate" class="input-field" required></td>
+            </tr>
+            <tr>
+                <td class="label">Upload Image</td>
+                <td><input type="file" name="images" accept="image/*" class="input-field" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <input type="submit" value="Add Blog" class="button">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+<%- include('../layouts/footer') %>

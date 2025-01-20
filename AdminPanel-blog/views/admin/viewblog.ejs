@@ -1,0 +1,74 @@
+<%- include('../layouts/header') %>
+
+<div class="container my-4">
+    <!-- Navigation and Search -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="btn-group">
+            <a href="/Blogs" class="btn btn-primary">Add Blogs</a>
+            <a href="/" class="btn btn-success">Add Category</a>
+        </div>
+        <form action="/Blogs/viewBlogs" method="get" class="d-flex">
+            <input type="search" name="searchBlogs" class="form-control me-2" placeholder="Search Blogs">
+            <button type="submit" class="btn btn-outline-primary">Search</button>
+        </form>
+    </div>
+
+    <!-- Table Heading -->
+    <h2 class="text-center text-primary mb-4">Existing Blogs</h2>
+
+    <!-- Blogs Table -->
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Category</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Author</th>
+                <th>Date</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% blogData.forEach(blog => { %>
+                <tr>
+                    <td><%= blog.categoryid.categoryName %></td>
+                    <td><%= blog.title %></td>
+                    <td><%= blog.description %></td>
+                    <td><%= blog.author %></td>
+                    <td><%= blog.blogDate %></td>
+                    <td>
+                        <img src="<%= blog.images %>" alt="Blog Image" class="img-fluid rounded" style="max-width: 100px;">
+                    </td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <a href="/Blogs/deleteblogs/<%= blog.id %>" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="/Blogs/editData/<%= blog.id %>" class="btn btn-warning btn-sm">Update</a>
+                        </div>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <% if (Number(page) > 1) { %>
+                <li class="page-item">
+                    <a href="?page=<%= Number(page) - 1 %>" class="page-link">Previous</a>
+                </li>
+            <% } %>
+            <li class="page-item active">
+                <span class="page-link"><%= page %></span>
+            </li>
+            <% if (Number(page) < totalpage - 1) { %>
+                <li class="page-item">
+                    <a href="?page=<%= Number(page) + 1 %>" class="page-link">Next</a>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+</div>
+
+<%- include('../layouts/footer') %>
